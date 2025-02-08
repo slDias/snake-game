@@ -10,8 +10,8 @@ var wiggle_counter = 15
 
 func add_next(body: BodyPart) -> void:
 	next = body
-
-func move_tail(direction, speed):
+	
+func __move_tail(direction, speed):
 	if next == null:
 		return
 
@@ -32,4 +32,33 @@ func move_tail(direction, speed):
 		prev_position = old_pos
 		prev_position += (direction * -1) * 50
 		d += 0.5
+		body_part = body_part.next
+
+func move_tail(direction, speed):
+	if next == null:
+		return
+
+	var wiggle = wiggle_variant * (direction.rotated(deg_to_rad(90)) * (speed/8))
+	wiggle_counter -= 1
+	if wiggle_counter == 0:
+		wiggle_variant *= -1
+		wiggle_counter = 15
+		
+	var prev_position = self.global_position
+	var body_part = next
+	while body_part != null:
+		var distance = body_part.global_position.distance_to(prev_position)
+		
+		var d = 1.0
+
+		if distance < 52.5:
+			d = 0.15
+			
+		if distance > 57.5:
+			d = 1.1
+		
+		var old_pos = body_part.global_position
+		body_part.global_position = old_pos.move_toward(prev_position, d * speed)
+		body_part.global_position += wiggle
+		prev_position = old_pos
 		body_part = body_part.next

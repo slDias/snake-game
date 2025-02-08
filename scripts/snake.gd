@@ -38,17 +38,18 @@ func _input(event: InputEvent) -> void:
 
 func increment_body_size() -> void:
 	
-	if tail_size > 10:
+	if tail_size >= 15:
 		return
 	
 	if tail == null:
 		tail = head
 	
 	var new_tail = tail.duplicate()
-	new_tail.position += (direction * -1) * (snake_size + new_tail.scale[0])
+	new_tail.global_position = tail.global_position
+	# new_tail.position += (direction * -1) * 50
 	new_tail.scale -= Vector2(0.0125, 0.0125)
-	new_tail.flip_v = !new_tail.flip_v
 	tail.add_next(new_tail)
-	call_deferred("add_child", new_tail)
+	get_tree().get_root().call_deferred("add_child", new_tail)
+	# call_deferred("add_child", new_tail)
 	tail = new_tail
 	tail_size += 1
