@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://bsjkihkp6asri"]
+
+[ext_resource type="PackedScene" uid="uid://ce5pemruif24j" path="res://scenes/snake.tscn" id="1_aur21"]
+[ext_resource type="PackedScene" uid="uid://dyiuaribh8jvq" path="res://scenes/apple.tscn" id="2_mhded"]
+[ext_resource type="Script" path="res://scenes/pause.gd" id="3_k0vkg"]
+[ext_resource type="PackedScene" uid="uid://codgd22lwutay" path="res://scenes/stage_0/walls.tscn" id="4_6ay07"]
+[ext_resource type="Texture2D" uid="uid://cy6rh540bw8nm" path="res://images/light_placeholder.png" id="5_bqmi3"]
+
+[node name="Main" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0.151276, 0.151276, 0.151276, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Snake" parent="." instance=ExtResource("1_aur21")]
+position = Vector2(171, 622)
+
+[node name="Apple" parent="." instance=ExtResource("2_mhded")]
+position = Vector2(972, 557)
+
+[node name="Pause" type="Node" parent="."]
+process_mode = 3
+script = ExtResource("3_k0vkg")
+
+[node name="Walls" parent="." instance=ExtResource("4_6ay07")]
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(630.196, 374.542)
+scale = Vector2(1.29497, 1.09833)
+shadow_enabled = true
+shadow_filter = 1
+texture = ExtResource("5_bqmi3")
