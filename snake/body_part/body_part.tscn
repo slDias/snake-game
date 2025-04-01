@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3ahrabkkkoth"]
+
+[ext_resource type="Script" uid="uid://871o3wi3secq" path="res://snake/body_part/body_part.gd" id="1_j4ty3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vho56"]
+
+[node name="BodyPart" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_j4ty3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_vho56")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)

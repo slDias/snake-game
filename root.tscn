@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://b3yl3r8qpuwk3"]
+
+[ext_resource type="PackedScene" uid="uid://dy2lts23pbyb" path="res://snake/snake.tscn" id="1_pq8q7"]
+[ext_resource type="Script" uid="uid://btie58ghrdqsj" path="res://game_state/pause.gd" id="1_pyidc"]
+
+[node name="Root" type="Node2D"]
+
+[node name="Snake" parent="." instance=ExtResource("1_pq8q7")]
+position = Vector2(500, 101)
+
+[node name="Pause" type="Node" parent="."]
+process_mode = 3
+script = ExtResource("1_pyidc")
