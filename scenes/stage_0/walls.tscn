@@ -15,7 +15,7 @@ a = Vector2(1920, 0)
 b = Vector2(1920, 440)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_4m8lk"]
-a = Vector2(1920, 640)
+a = Vector2(1920, 448)
 b = Vector2(1920, 1080)
 
 [node name="Walls" type="Node2D"]

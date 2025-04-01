@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://ce5pemruif24j"]
+[gd_scene load_steps=5 format=3 uid="uid://ce5pemruif24j"]
 
-[ext_resource type="Script" path="res://scripts/snake.gd" id="1_xt1l0"]
+[ext_resource type="Script" uid="uid://bgtrog8vihbs1" path="res://scripts/snake.gd" id="1_xt1l0"]
 [ext_resource type="Texture2D" uid="uid://dowegx6tfxx1j" path="res://images/snake_placeholder.png" id="2_2r0ir"]
-[ext_resource type="Script" path="res://scripts/body_part.gd" id="2_qq4kq"]
 [ext_resource type="Texture2D" uid="uid://cy6rh540bw8nm" path="res://images/light_placeholder.png" id="4_vi8of"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_82r0n"]
@@ -11,14 +10,13 @@ size = Vector2(40, 39)
 [node name="Snake" type="CharacterBody2D"]
 script = ExtResource("1_xt1l0")
 
-[node name="HeadSprite" type="Sprite2D" parent="."]
-scale = Vector2(0.8, 0.78)
-texture = ExtResource("2_2r0ir")
-script = ExtResource("2_qq4kq")
-
-[node name="PointLight2D" type="PointLight2D" parent="HeadSprite"]
-position = Vector2(2.74181e-06, -4.23193e-06)
-texture = ExtResource("4_vi8of")
-
 [node name="HeadCollissionShape" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_82r0n")
+
+[node name="HeadSprite" type="Sprite2D" parent="HeadCollissionShape"]
+scale = Vector2(0.8, 0.78)
+texture = ExtResource("2_2r0ir")
+
+[node name="PointLight2D" type="PointLight2D" parent="HeadCollissionShape/HeadSprite"]
+position = Vector2(2.74181e-06, -4.23193e-06)
+texture = ExtResource("4_vi8of")

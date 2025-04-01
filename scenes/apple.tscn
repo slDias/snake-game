@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dyiuaribh8jvq"]
 
-[ext_resource type="Script" path="res://scripts/apple.gd" id="1_jeuu5"]
+[ext_resource type="Script" uid="uid://bsxhgyq683sbn" path="res://scripts/apple.gd" id="1_jeuu5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vuq7c"]
 radius = 27.0

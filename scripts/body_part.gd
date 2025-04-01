@@ -1,4 +1,4 @@
-extends Sprite2D
+extends CharacterBody2D
 
 class_name BodyPart
 
@@ -6,59 +6,39 @@ class_name BodyPart
 
 var wiggle_variant = 1
 var wiggle_counter = 15
-
+var counter = 20
 
 func add_next(body: BodyPart) -> void:
 	next = body
 	
-func __move_tail(direction, speed):
-	if next == null:
-		return
 
-	var wiggle = wiggle_variant * (direction.rotated(deg_to_rad(90)) * (speed/8))
-	wiggle_counter -= 1
-	if wiggle_counter == 0:
-		wiggle_variant *= -1
-		wiggle_counter = 15
+func move_tail(prev_position, speed, delta):
+	var curr_position = self.position
+	var body_part = self.next
+	while body_part != null and counter > 0:
+		var new_pos = (body_part.position + prev_position + curr_position) / 3
+		print("prev", prev_position)
+		print("curr", curr_position)
+		print("bp", body_part.position)
+		print("new", new_pos)
+		print("----------------")
+		prev_position = body_part.position
+		curr_position = new_pos
 		
-	var prev_position = (direction * -1) * 50
-	var body_part = next
-	var d = 4.0
-	while body_part != null:
-		# prev_position += wiggle
-		var old_pos = body_part.position
-		body_part.position += (prev_position - body_part.position) / d
-		body_part.position += wiggle
-		prev_position = old_pos
-		prev_position += (direction * -1) * 50
-		d += 0.5
-		body_part = body_part.next
-
-func move_tail(direction, speed):
-	if next == null:
-		return
-
-	var wiggle = wiggle_variant * (direction.rotated(deg_to_rad(90)) * (speed/8))
-	wiggle_counter -= 1
-	if wiggle_counter == 0:
-		wiggle_variant *= -1
-		wiggle_counter = 15
-		
-	var prev_position = self.global_position
-	var body_part = next
-	while body_part != null:
-		var distance = body_part.global_position.distance_to(prev_position)
-		
-		var d = 1.0
-
+		var distance = body_part.position.distance_to(new_pos)
+		var d = 0.5
 		if distance < 52.5:
-			d = 0.15
-			
+			d = 0.12
 		if distance > 57.5:
-			d = 1.1
-		
-		var old_pos = body_part.global_position
-		body_part.global_position = old_pos.move_toward(prev_position, d * speed)
-		body_part.global_position += wiggle
-		prev_position = old_pos
+			d = .75
+			
+		print("dis", distance)
+		print("move", ((new_pos - body_part.position) * d) * delta)
+			
+		# body_part.move_and_collide(((new_pos - body_part.position) * -d) * delta)
+			
 		body_part = body_part.next
+		# counter -= 1
+		
+	if counter == 0:
+		print("lssdkj")
