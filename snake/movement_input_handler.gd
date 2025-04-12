@@ -4,7 +4,7 @@ class_name SnakeMovementControls
 @export var default_speed = 10.0
 @export var running_speed = 20.0
 
-var movement_vector = Vector2(1.0, 0.0)
+var movement_vector = Vector2(0.0, -1.0)
 var current_speed = default_speed
 @onready var character = $Head
 

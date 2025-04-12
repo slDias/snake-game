@@ -8,4 +8,6 @@ script = ExtResource("1_ati24")
 
 [node name="Head" parent="." instance=ExtResource("2_opl32")]
 
+[node name="Camera2D" type="Camera2D" parent="Head"]
+
 [node name="BodyRoot" type="Node2D" parent="."]
