@@ -1,7 +1,7 @@
 extends Node2D
 class_name SnakeMovementControls
 
-@export var default_speed = 10.0
+@export var default_speed = 500.0
 @export var running_speed = 20.0
 
 var movement_vector = Vector2(0.0, -1.0)

@@ -16,10 +16,11 @@ static func set_snake_size(
 		root.add_child.call_deferred(body_part_cursor)
 		
 		
-	while false and body_part_cursor != null:
+	while body_part_cursor != null:
 		var prev = body_part_cursor.previous_body_part
 		while prev != null:
 			body_part_cursor.add_collision_exception_with(prev)
+			body_part_cursor.wall_min_slide_angle = 0.0
 			prev = prev.previous_body_part
 		body_part_cursor = body_part_cursor.previous_body_part
 		

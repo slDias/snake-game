@@ -22,16 +22,18 @@ func add_wiggle(direction: Vector2) -> Vector2:
 	return direction + wiggle_dir
 
 
-func move(direction: Vector2) -> KinematicCollision2D:
+func move(direction: Vector2):
 	
 	var direction_wiggly = direction
 	if previous_body_part != null:
 		direction_wiggly = add_wiggle(direction)
 	
-	var result = move_and_collide(direction_wiggly)
+	self.velocity = direction_wiggly
+	move_and_slide()
+	# var result = move_and_collide(direction_wiggly)
 	if next_body_part:
 		var bp_dir = position - next_body_part.position
 		var dist = next_body_part.position.distance_squared_to(position)
-		var bp_dir_len = max((dist - 400.0) / 100.0, .175)
-		next_body_part.move(bp_dir.normalized() * bp_dir_len)
-	return result
+		var bp_dir_len = max((dist - 250.0) / 100.0, .25)
+		next_body_part.move(bp_dir.normalized() * (bp_dir_len * 75))
+	# return result
